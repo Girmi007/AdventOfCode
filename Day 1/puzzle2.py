@@ -1,11 +1,10 @@
 import csv
 
 
-class EasterBunnyHQ:
+class EasterBunnyHQBlocksTwo:
 
     def __init__(self):
-        self.x = 0
-        self.y = 0
+        self.location = [0, 0]
         self.current_direction = 0
         self.visited_locations = set()
 
@@ -26,15 +25,12 @@ class EasterBunnyHQ:
 
     def step_single_and_check(self):
         relative_step = 1 if self.current_direction % 3 else -1
-        if self.current_direction % 2:
-            self.x += relative_step
-        else:
-            self.y += relative_step
+        self.location[self.current_direction % 2] += relative_step
 
-        if (self.x, self.y) in self.visited_locations:
+        if tuple(self.location) in self.visited_locations:
             return True
         else:
-            self.visited_locations.add((self.x, self.y))
+            self.visited_locations.add(tuple(self.location))
             return False
 
     def main(self):
@@ -44,8 +40,8 @@ class EasterBunnyHQ:
             if visited:
                 break
 
-        print("Distance: %d steps" % (abs(self.x) + abs(self.y)))
+        print("Distance: %d steps" % (abs(self.location[0]) + abs(self.location[1])))
 
 if __name__ == "__main__":
-    puzzle = EasterBunnyHQ()
+    puzzle = EasterBunnyHQBlocksTwo()
     puzzle.main()

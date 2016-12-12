@@ -1,11 +1,10 @@
 import csv
 
 
-class EasterBunnyHQ:
+class EasterBunnyHQBlocks:
 
     def __init__(self):
-        self.x = 0
-        self.y = 0
+        self.location = [0, 0]
         self.current_direction = 0
 
         with open('input.txt', 'rt') as csvfile:
@@ -18,18 +17,15 @@ class EasterBunnyHQ:
 
     def step(self, step_size):
         relative_step = step_size if self.current_direction % 3 else -step_size
-        if self.current_direction % 2:
-            self.x += relative_step
-        else:
-            self.y += relative_step
+        self.location[self.current_direction % 2] += relative_step
 
     def main(self):
         for instruction in self.instructions:
             self.turn(instruction[0])
             self.step(int(instruction[1:]))
 
-        print("Distance: %d steps" % (abs(self.x) + abs(self.y)))
+        print("Distance: %d steps" % (abs(self.location[0]) + abs(self.location[1])))
 
 if __name__ == "__main__":
-    puzzle = EasterBunnyHQ()
+    puzzle = EasterBunnyHQBlocks()
     puzzle.main()

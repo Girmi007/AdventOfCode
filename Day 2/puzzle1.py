@@ -1,35 +1,36 @@
 import csv
+import re
 
 
-class EasterBunnyHQ:
+class BathroomSecurity:
 
     def __init__(self):
-        self.x = 0
-        self.y = 0
-        self.current_direction = 0
+        self.currentLocation = [1, 1]
 
         with open('input.txt', 'rt') as csvfile:
             reader = csv.reader(csvfile, skipinitialspace=True)
-            self.instructions = list(reader)[0]
+            self.input = list(reader)
 
-    def turn(self, turn_direction):
-        relative_turn = 1 if turn_direction == "R" else -1
-        self.current_direction = (self.current_direction + relative_turn) % 4
+    def select_next_key(self, instruction):
+        absolute_direction = 0 if re.search(r'^[LR]$', instruction) else 1
+        relative_direction = 1 if re.search(r'^[RD]$', instruction) else -1
+        valid_move = (self.currentLocation[absolute_direction] + relative_direction) % 4 < 3
 
-    def step(self, step_size):
-        relative_step = step_size if self.current_direction % 3 else -step_size
-        if self.current_direction % 2:
-            self.x += relative_step
-        else:
-            self.y += relative_step
+        self.currentLocation[absolute_direction] += relative_direction if valid_move else 0
+
+    def get_current_key(self):
+        key = self.currentLocation[1] * 3 + self.currentLocation[0] + 1
+        return key
 
     def main(self):
-        for instruction in self.instructions:
-            self.turn(instruction[0])
-            self.step(int(instruction[1:]))
+        code = []
+        for line in self.input:
+            for instruction in line[0]:
+                self.select_next_key(instruction)
 
-        print("Distance: %d steps" % (abs(self.x) + abs(self.y)))
+            code.append(self.get_current_key())
+        print(''.join(str(x) for x in code))
 
 if __name__ == "__main__":
-    puzzle = EasterBunnyHQ()
+    puzzle = BathroomSecurity()
     puzzle.main()
