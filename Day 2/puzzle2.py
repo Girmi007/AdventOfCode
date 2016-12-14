@@ -37,10 +37,8 @@ class BathroomSecurity:
                 self.select_next_key(instruction)
 
             code.append(self.get_current_key())
-
         print(''.join(format(x, 'x') for x in code))
 
 if __name__ == "__main__":
     puzzle = BathroomSecurity()
     puzzle.main()
-    print()
