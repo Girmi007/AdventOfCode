@@ -6,9 +6,8 @@ class TriangleFinderSwapped:
 
     def __init__(self):
         with open('input.txt', 'rt') as textfile:
-            self.input = textfile.readlines()
-            self.input = list(reader)
-            self.input = [str.split(x[0]) for x in self.input]
+            self.input = textfile.read().splitlines()
+            self.input = [[value for value in line.strip().split(' ') if value is not ''] for line in self.input]
 
     def reshape_data(self):
         self.input = [[int(y) for y in x] for x in self.input]

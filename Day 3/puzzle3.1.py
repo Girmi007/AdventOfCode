@@ -1,15 +1,14 @@
-import csv
 
 
 class TriangleFinder:
 
     def __init__(self):
-        with open('input.txt', 'rt') as csvfile:
-            reader = csv.reader(csvfile, delimiter=' ', skipinitialspace=True)
-            self.input = list(reader)
+        with open('input.txt', 'rt') as textfile:
+            self.input = textfile.read().splitlines()
+            self.input = [[value for value in line.strip().split(' ') if value is not ''] for line in self.input]
 
     def filter_valid_triangles(self):
-        self.input = list(map(lambda x: sorted([int(y) for y in str.split(x[0])]), self.input))
+        self.input = list(map(lambda x: sorted([int(y) for y in x]), self.input))
         self.input = list(filter(lambda x: x[0] + x[1] > x[2], self.input))
 
     def main(self):

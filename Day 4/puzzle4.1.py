@@ -7,7 +7,7 @@ class RoomSecurity:
 
     def __init__(self):
         with open('input.txt', 'rt') as textfile:
-            self.input = textfile.readlines()
+            self.input = textfile.read().splitlines()
 
     def get_verified_id(self, encrypted_name):
         room_name = re.search("^[A-Za-z\-]+", encrypted_name).group().replace('-', '')

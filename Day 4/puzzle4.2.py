@@ -7,7 +7,7 @@ class RoomSecurity:
 
     def __init__(self):
         with open('input.txt', 'rt') as textfile:
-            self.input = textfile.readlines()
+            self.input = textfile.read().splitlines()
 
     def decrypt_room_name(self, encrypted_name):
         sector_id = int(re.search("-([0-9]+)\[", encrypted_name).group(1))
