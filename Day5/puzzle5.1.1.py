@@ -9,7 +9,7 @@ class DoorIDPassword:
 
     def door_hash_generator(self):
         i = 0
-        while len(self.password_list) < 8 :
+        while len(self.password_list) < 8:
             door_id = self.input + str(i)
             door_hash = hashlib.md5(door_id.encode('utf-8')).hexdigest()
             yield door_hash
