@@ -14,10 +14,10 @@ class LittleScreen:
         split_line = input_line.split()
 
         if split_line[0] == "rect":
-            size = re.search("([0-9]+)x([0-9]+)", split_line[1])
+            size = re.search("(\d+)x(\d+)", split_line[1])
             self.draw_rectangle(int(size.group(1)), int(size.group(2)))
         elif split_line[0] == "rotate":
-            line = re.search("[xy]=([0-9]+)", split_line[2]).group(1)
+            line = re.search("[xy]=(\d+)", split_line[2]).group(1)
             self.rotate_line(split_line[1], int(line), int(split_line[4]))
 
     def draw_rectangle(self, width, height):
@@ -35,7 +35,7 @@ class LittleScreen:
     def main(self):
         [self.parse_input(line) for line in self.input]
         self.print_screen()
-        lit_pixels = sum([sum([1 if column else 0 for column in row]) for row in self.screen])
+        lit_pixels = sum([1 if column else 0 for row in self.screen for column in row])
         print("Lit pixels: %d" % lit_pixels)
 
 if __name__ == "__main__":
