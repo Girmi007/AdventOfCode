@@ -26,6 +26,7 @@ class EasterBunnyHQBlocks:
 
         print("Distance: %d steps" % (abs(self.location[0]) + abs(self.location[1])))
 
+
 if __name__ == "__main__":
     puzzle = EasterBunnyHQBlocks()
     puzzle.main()
