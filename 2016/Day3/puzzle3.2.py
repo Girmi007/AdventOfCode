@@ -24,6 +24,7 @@ class TriangleFinderSwapped:
         self.filter_valid_triangles()
         print(len(self.input))
 
+
 if __name__ == "__main__":
     puzzle = TriangleFinderSwapped()
     puzzle.main()

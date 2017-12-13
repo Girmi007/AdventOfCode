@@ -15,6 +15,7 @@ class TriangleFinder:
         self.filter_valid_triangles()
         print(len(self.input))
 
+
 if __name__ == "__main__":
     puzzle = TriangleFinder()
     puzzle.main()
